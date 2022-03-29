@@ -1,4 +1,4 @@
-// ***********************************************************************
+﻿// ***********************************************************************
 // Assembly         : OpenAC.Net.CEP
 // Author           : RFTD
 // Created          : 02-21-2017
@@ -6,7 +6,7 @@
 // Last Modified By : RFTD
 // Last Modified On : 02-21-2017
 // ***********************************************************************
-// <copyright file="CEPWebService.cs" company="OpenAC .Net">
+// <copyright file="WebserviceCEP.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
 //	     		    Copyright (c) 2014 - 2017 Projeto OpenAC .Net
 //
@@ -29,12 +29,16 @@
 // <summary></summary>
 // ***********************************************************************
 
-namespace OpenAC.Net.CEP
+using System;
+using OpenAC.Net.CEP.Commom;
+
+namespace OpenAC.Net.CEP.Webservice
 {
-    public enum CEPWebService
+    internal abstract class WebserviceCEP
     {
-        None,
-        Correios,
-        ViaCep
+        public virtual OpenLogradouro[] BuscarPorCEP(string cep) => throw new NotSupportedException("Este provedor não possui pesquisa por CEP.");
+
+        public virtual OpenLogradouro[] BuscarPorLogradouro(OpenUF uf, string municipio, string logradouro, string tipoLogradouro = "",
+            string bairro = "") => throw new NotSupportedException("Este provedor não possui pesquisa por logradouro.");
     }
 }

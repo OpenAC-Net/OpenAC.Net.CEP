@@ -1,12 +1,12 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : OpenAC.Net.CEP
 // Author           : RFTD
-// Created          : 02-21-2017
+// Created          : 02-16-2017
 //
 // Last Modified By : RFTD
-// Last Modified On : 02-21-2017
+// Last Modified On : 02-16-2017
 // ***********************************************************************
-// <copyright file="WebserviceCEP.cs" company="OpenAC .Net">
+// <copyright file="OpenLogradouro.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
 //	     		    Copyright (c) 2014 - 2017 Projeto OpenAC .Net
 //
@@ -29,21 +29,29 @@
 // <summary></summary>
 // ***********************************************************************
 
-using System;
-
-namespace OpenAC.Net.CEP
+namespace OpenAC.Net.CEP.Commom
 {
-    internal abstract class WebserviceCEP
+    /// <summary>
+    /// Class OpenLogradouro. This class cannot be inherited.
+    /// </summary>
+    public sealed class OpenLogradouro
     {
-        public virtual OpenLogradouro[] BuscarPorCEP(string cep)
-        {
-            throw new NotSupportedException("Este provedor não possui pesquisa por CEP.");
-        }
+        public string CEP { get; set; }
 
-        public virtual OpenLogradouro[] BuscarPorLogradouro(OpenUF uf, string municipio, string logradouro, string tipoLogradouro = "",
-            string bairro = "")
-        {
-            throw new NotSupportedException("Este provedor não possui pesquisa por logradouro.");
-        }
+        public string TipoLogradouro { get; set; }
+
+        public string Logradouro { get; set; }
+
+        public string Complemento { get; set; }
+
+        public string Bairro { get; set; }
+
+        public string Municipio { get; set; }
+
+        public OpenUF UF { get; set; }
+
+        public string IBGEMunicipio { get; set; }
+
+        public string IBGEUF { get; set; }
     }
 }

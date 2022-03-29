@@ -34,10 +34,11 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Xml.Linq;
+using OpenAC.Net.CEP.Commom;
 using OpenAC.Net.Core;
 using OpenAC.Net.Core.Extensions;
 
-namespace OpenAC.Net.CEP
+namespace OpenAC.Net.CEP.Webservice
 {
     internal sealed class CorreiosWebservice : WebserviceCEP
     {
@@ -88,8 +89,7 @@ namespace OpenAC.Net.CEP
                     CEP = element.ElementAnyNs("cep").GetValue<string>(),
                     Bairro = element.ElementAnyNs("bairro").GetValue<string>(),
                     Municipio = element.ElementAnyNs("cidade").GetValue<string>(),
-                    Complemento =
-                        $"{element.ElementAnyNs("complemento").GetValue<string>()}{Environment.NewLine}{element.ElementAnyNs("complemento2").GetValue<string>()}",
+                    Complemento = $"{element.ElementAnyNs("complemento").GetValue<string>()}{Environment.NewLine}{element.ElementAnyNs("complemento2").GetValue<string>()}",
                     Logradouro = element.ElementAnyNs("end").GetValue<string>(),
                     UF = (OpenUF)Enum.Parse(typeof(OpenUF), element.ElementAnyNs("uf").GetValue<string>())
                 };

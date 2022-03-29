@@ -31,12 +31,14 @@
 
 using System;
 using System.Collections.Generic;
+using OpenAC.Net.CEP.Commom;
+using OpenAC.Net.CEP.Webservice;
 using OpenAC.Net.Core;
 using OpenAC.Net.Core.Extensions;
 
 namespace OpenAC.Net.CEP
 {
-    public sealed class OpenCEP : OpenComponent
+    public sealed class OpenCEP
     {
         #region Events
 
@@ -46,6 +48,16 @@ namespace OpenAC.Net.CEP
         public event EventHandler<EventArgs> OnBuscaEfetuada;
 
         #endregion Events
+
+        #region Constructors
+
+        public OpenCEP()
+        {
+            Resultados = new List<OpenLogradouro>();
+            WebService = CEPWebService.None;
+        }
+
+        #endregion Constructors
 
         #region Propriedades
 
@@ -96,6 +108,7 @@ namespace OpenAC.Net.CEP
         /// <returns>System.Int32.</returns>
         public int BuscarPorCEP(string cep)
         {
+            Guard.Against<OpenException>(WebService == CEPWebService.None, "Selecione um webservice primeiro.");
             Guard.Against<ArgumentException>(cep.IsEmpty(), "CEP não pode ser vazio.");
             Guard.Against<ArgumentException>(!cep.IsCep(), "CEP inválido.");
 
@@ -120,6 +133,7 @@ namespace OpenAC.Net.CEP
         /// <returns>System.Int32.</returns>
         public int BuscarPorLogradouro(OpenUF uf, string municipio, string logradouro, string tipoLogradouro = "", string bairro = "")
         {
+            Guard.Against<OpenException>(WebService == CEPWebService.None, "Selecione um webservice primeiro.");
             Guard.Against<ArgumentException>(municipio.IsEmpty(), "Municipio não pode ser vazio.");
             Guard.Against<ArgumentException>(logradouro.IsEmpty(), "Logradouro não pode ser vazio.");
 
@@ -143,30 +157,11 @@ namespace OpenAC.Net.CEP
                 case CEPWebService.ViaCep:
                     return new ViaCepWebservice();
 
+                case CEPWebService.None:
                 default:
                     throw new OpenException("Webservice não implementado.");
             }
         }
-
-        #region Protected Methods
-
-        /// <summary>
-        /// Called when [initialize].
-        /// </summary>
-        protected override void OnInitialize()
-        {
-            Resultados = new List<OpenLogradouro>();
-            WebService = CEPWebService.None;
-        }
-
-        /// <summary>
-        /// Called when [disposing].
-        /// </summary>
-        protected override void OnDisposing()
-        {
-        }
-
-        #endregion Protected Methods
 
         #endregion Methods
     }

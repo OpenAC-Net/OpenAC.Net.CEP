@@ -34,10 +34,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Xml.Linq;
+using OpenAC.Net.CEP.Commom;
 using OpenAC.Net.Core;
 using OpenAC.Net.Core.Extensions;
 
-namespace OpenAC.Net.CEP
+namespace OpenAC.Net.CEP.Webservice
 {
     internal sealed class ViaCepWebservice : WebserviceCEP
     {

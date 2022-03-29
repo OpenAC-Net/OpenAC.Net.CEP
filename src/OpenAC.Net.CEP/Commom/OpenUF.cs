@@ -31,7 +31,7 @@
 
 using System.ComponentModel;
 
-namespace OpenAC.Net.CEP
+namespace OpenAC.Net.CEP.Commom
 {
     /// <summary>
     ///
