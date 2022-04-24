@@ -35,10 +35,11 @@ using OpenAC.Net.CEP.Commom;
 using OpenAC.Net.CEP.Webservice;
 using OpenAC.Net.Core;
 using OpenAC.Net.Core.Extensions;
+using OpenAC.Net.Core.Logging;
 
 namespace OpenAC.Net.CEP
 {
-    public sealed class OpenCEP
+    public sealed class OpenCEP : OpenDisposable, IOpenLog
     {
         #region Events
 

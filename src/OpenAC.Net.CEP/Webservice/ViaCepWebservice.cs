@@ -65,14 +65,10 @@ namespace OpenAC.Net.CEP.Webservice
             var ret = ConsultaCEP(url);
 
             if (!tipoLogradouro.IsEmpty())
-            {
                 ret.RemoveAll(x => !string.Equals(x.TipoLogradouro.RemoveAccent(), tipoLogradouro.RemoveAccent(), StringComparison.CurrentCultureIgnoreCase));
-            }
 
             if (!bairro.IsEmpty())
-            {
                 ret.RemoveAll(x => !string.Equals(x.Bairro.RemoveAccent(), bairro.RemoveAccent(), StringComparison.CurrentCultureIgnoreCase));
-            }
 
             return ret.ToArray();
         }
